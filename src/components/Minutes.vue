@@ -2,7 +2,7 @@
   <div class="minutes">
     <p
       :class="{ active: n - 1 === minute }"
-      class="minute"
+      class="minute date"
       :style="{
         transform: 'rotate(' + (minute - n + 1) * (360 / 60) + 'deg)'
       }"
@@ -27,17 +27,7 @@ export default class Minutes extends Vue {
 .minutes {
   transform: translateX(-40vmin);
   .minute {
-    position: absolute;
     width: 80vmin;
-    text-align: right;
-    font-size: calc(0.5rem + 0.5vmin);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: transform 0.5s ease, font-size 0.5s ease;
-  }
-
-  .active {
-    font-size: calc(1rem + 0.5vmin);
   }
 }
 </style>

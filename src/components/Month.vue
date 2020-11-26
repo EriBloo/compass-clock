@@ -2,7 +2,7 @@
   <div class="months">
     <p
       :class="{ active: n - 1 === month }"
-      class="month"
+      class="month date"
       :style="{
         transform: 'rotate(' + (month - n + 1) * (360 / 12) + 'deg)'
       }"
@@ -18,7 +18,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class Seconds extends Vue {
+export default class Month extends Vue {
   @Prop(Number) readonly month!: number;
 
   months: { [month: number]: string } = {
@@ -34,7 +34,7 @@ export default class Seconds extends Vue {
     9: "Oct",
     10: "Nov",
     11: "Dec"
-  }
+  };
 }
 </script>
 
@@ -42,17 +42,7 @@ export default class Seconds extends Vue {
 .months {
   transform: translateX(-25vmin);
   .month {
-    position: absolute;
     width: 50vmin;
-    text-align: right;
-    font-size: calc(0.5rem + 0.5vmin);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    transition: transform 0.5s ease, font-size 0.5s ease;
-  }
-
-  .active {
-    font-size: calc(1rem + 0.5vmin);
   }
 }
 </style>

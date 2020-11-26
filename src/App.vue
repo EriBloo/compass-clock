@@ -6,7 +6,9 @@
       <Hours :hour="time.hour" />
       <Month :month="time.month" />
       <Day :day="time.day" :month="time.month" :year="time.year" />
+      <Week :week="time.week" />
     </div>
+    <p class="year">{{ time.year }}</p>
   </div>
 </template>
 
@@ -17,15 +19,17 @@ import Minutes from "./components/Minutes.vue";
 import Hours from "./components/Hours.vue";
 import Day from "./components/Day.vue";
 import Month from "./components/Month.vue";
+import Week from "./components/Week.vue";
 
 @Component({
-  components: { Seconds, Minutes, Hours, Day, Month }
+  components: { Seconds, Minutes, Hours, Day, Month, Week }
 })
 export default class App extends Vue {
   time: { [time: string]: number } = {
     year: 2020,
     month: 0,
     day: 1,
+    week: 0,
     hour: 0,
     minute: 0,
     second: 0
@@ -37,6 +41,7 @@ export default class App extends Vue {
       year: currentTime.getFullYear(),
       month: currentTime.getMonth(),
       day: currentTime.getDate(),
+      week: currentTime.getDay(),
       hour: currentTime.getHours(),
       minute: currentTime.getMinutes(),
       second: currentTime.getSeconds()
@@ -72,5 +77,27 @@ body {
   height: 100vh;
   display: grid;
   place-items: center;
+
+  .date {
+    position: absolute;
+    text-align: right;
+    font-size: calc(0.5rem + 0.5vmin);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: transform 0.5s ease, font-size 0.5s ease, opacity 0.5s ease;
+    opacity: 0.6;
+  }
+
+  .active {
+    font-size: calc(1rem + 0.5vmin);
+    opacity: 1;
+  }
+
+  .year {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: calc(1rem + 2vmin);
+  }
 }
 </style>
